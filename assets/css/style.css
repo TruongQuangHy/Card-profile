@@ -111,8 +111,38 @@ a {
   color: #555;
   line-height: 1.2em;
   font-weight: 600;
+  position: relative;
+  width: 60px;
 }
 
+/* hover icon */
+
+.card .content .details .data .icon i {
+  transition: 0.5s;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card .content .details .data .icon:hover {
+  display: flex;
+  justify-content: center;
+  width: 60px;
+}
+
+.card .content .details .data .icon:hover i {
+  font-size: 2em;
+  padding-top: 0rem;
+  left: 60%;
+  transform: translateX(-60%);
+}
+
+.card .content .details .data .icon:hover span {
+  display: none;
+}
+
+/*  */
 .card .content .details .data .icon:nth-child(1) i {
   background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
   -webkit-background-clip: text;
