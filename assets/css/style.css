@@ -156,8 +156,16 @@ a {
   cursor: pointer;
 }
 
+.card .content .details .actionBtn button a {
+  color: #fff;
+}
+
 .card .content .details .actionBtn button:nth-child(2) {
   border: 1px solid #999;
   background: #fff;
+  color: #999;
+}
+
+.card .content .details .actionBtn button:nth-child(2) a {
   color: #999;
 }
