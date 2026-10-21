@@ -174,7 +174,7 @@ html.lenis body {
 }
 
 /* Buttons */
-.btn {
+@utility btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -190,33 +190,33 @@ html.lenis body {
     border-color 180ms var(--ease-out),
     color 180ms var(--ease-out),
     transform 160ms var(--ease-out);
+
+  &:active {
+    transform: scale(0.97);
+  }
 }
 
-.btn:active {
-  transform: scale(0.97);
-}
-
-.btn-primary {
+@utility btn-primary {
   background: var(--accent);
   color: var(--accent-ink);
+
+  &:hover {
+    background: color-mix(in oklab, var(--accent) 86%, white);
+  }
 }
 
-.btn-primary:hover {
-  background: color-mix(in oklab, var(--accent) 86%, white);
-}
-
-.btn-ghost {
+@utility btn-ghost {
   background: var(--surface-2);
   border: 1px solid var(--line);
   color: var(--fg);
+
+  &:hover {
+    background: var(--surface-3);
+    border-color: var(--line-strong);
+  }
 }
 
-.btn-ghost:hover {
-  background: var(--surface-3);
-  border-color: var(--line-strong);
-}
-
-.icon-btn {
+@utility icon-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -227,14 +227,14 @@ html.lenis body {
   transition:
     background-color 160ms var(--ease-out),
     color 160ms var(--ease-out);
+
+  &:hover {
+    background: var(--surface-3);
+    color: var(--fg);
+  }
 }
 
-.icon-btn:hover {
-  background: var(--surface-3);
-  color: var(--fg);
-}
-
-.chip {
+@utility chip {
   display: inline-flex;
   align-items: center;
   height: 26px;

@@ -263,7 +263,7 @@ export function Navbar() {
 
             <button
               onClick={() => setMenuOpen((v) => !v)}
-              className="icon-btn lg:hidden"
+              className="icon-btn max-lg:inline-flex lg:!hidden hidden"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-label={menuOpen ? t("Đóng menu", "Close menu") : t("Mở menu", "Open menu")}
