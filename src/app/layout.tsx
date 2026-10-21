@@ -17,7 +17,7 @@ const display = Bricolage_Grotesque({
 });
 
 const code = JetBrains_Mono({
-  subsets: ["latin", "vietnamese"],
+  subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-code",
   display: "swap",
