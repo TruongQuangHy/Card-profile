@@ -1,0 +1,372 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design tokens
+ * One neutral ink scale (cool-tinted, never pure black) plus a single accent
+ * that the theme switcher swaps at runtime via --accent / --accent-rgb.
+ */
+:root {
+  color-scheme: dark;
+
+  --accent: #6fd3ef;
+  --accent-rgb: 111, 211, 239;
+  --accent-ink: #06222b;
+
+  --ink: #0b0d12;
+  --surface: #11141a;
+  --surface-2: #171b23;
+  --surface-3: #1e2330;
+  --line: rgba(226, 232, 240, 0.08);
+  --line-strong: rgba(226, 232, 240, 0.16);
+  --fg: #eef1f6;
+  --fg-2: #c3cad6;
+  --muted: #959eae;
+  --subtle: #7d8697;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --nav-h: 68px;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), var(--font-body), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, "SFMono-Regular", monospace;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis owns smooth scrolling */
+  background-color: var(--ink);
+  scroll-padding-top: calc(var(--nav-h) + 24px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--ink);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Browser surfaces carry the palette too */
+::selection {
+  background: rgba(var(--accent-rgb), 0.32);
+  color: #ffffff;
+}
+
+input,
+textarea {
+  caret-color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+a {
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(226, 232, 240, 0.18) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(226, 232, 240, 0.14);
+  border: 3px solid var(--ink);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--accent-rgb), 0.5);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* WebGL stage behind the hero */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Soft accent wash at the top of the page, fixed so it never repaints on scroll */
+.page-wash {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 75% 0%, rgba(var(--accent-rgb), 0.09), transparent 70%),
+    radial-gradient(50% 40% at 10% 10%, rgba(148, 163, 184, 0.05), transparent 70%);
+}
+
+/* Shared surfaces */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+}
+
+.hairline {
+  border-color: var(--line);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 44px;
+  padding: 0 1.15rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    color 180ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-primary:hover {
+  background: color-mix(in oklab, var(--accent) 86%, white);
+}
+
+.btn-ghost {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--fg);
+}
+
+.btn-ghost:hover {
+  background: var(--surface-3);
+  border-color: var(--line-strong);
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  color: var(--fg-2);
+  transition:
+    background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out);
+}
+
+.icon-btn:hover {
+  background: var(--surface-3);
+  color: var(--fg);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 0.6rem;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--fg-2);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+/* Form fields */
+.field {
+  width: 100%;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  padding: 0.8rem 0.95rem;
+  font-size: 0.95rem;
+  transition:
+    border-color 160ms var(--ease-out),
+    background-color 160ms var(--ease-out);
+}
+
+.field::placeholder {
+  color: var(--subtle);
+}
+
+.field:hover {
+  border-color: var(--line-strong);
+}
+
+.field:focus {
+  outline: none;
+  border-color: rgba(var(--accent-rgb), 0.7);
+  background: var(--surface-3);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ID card flip */
+.card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print: only the CV document */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  #cv-print,
+  #cv-print * {
+    visibility: visible !important;
+  }
+
+  /* Every ancestor of the CV drops its clipping, scrolling and animation transforms */
+  :has(#cv-print) {
+    position: static !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    transform: none !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  #cv-print .break-inside-avoid {
+    break-inside: avoid;
+  }
+
+  #cv-print {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    padding: 0 !important;
+  }
+
+  #cv-print .print-dark {
+    color: #111111 !important;
+  }
+
+  #cv-print .print-muted {
+    color: #444444 !important;
+  }
+
+  #cv-print .print-border {
+    border-color: #d4d4d4 !important;
+  }
+
+  #cv-print .print-plain {
+    background: transparent !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
