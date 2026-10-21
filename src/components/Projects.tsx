@@ -50,7 +50,9 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
               alt=""
               fill
               sizes={wide ? "(min-width: 768px) 1100px, 100vw" : "(min-width: 768px) 540px, 100vw"}
-              className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+              className={`${
+                project.imageFit === "contain" ? "object-contain p-6" : "object-cover"
+              } transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]`}
             />
           </div>
         )}

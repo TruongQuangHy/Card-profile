@@ -12,6 +12,7 @@ export interface Project {
   };
   featured: boolean;
   image?: string;
+  imageFit?: "contain" | "cover";
   logo?: string;
   apkDownload?: string;
   liveUrl?: string;
@@ -218,7 +219,8 @@ export const PORTFOLIO_DATA: {
       category: "realtime_ai",
       categoryLabel: { en: "Realtime & P2P", vi: "Thời Gian Thực & P2P" },
       featured: true,
-      image: "/images/tbchat-icon.webp",
+      image: "/images/tbchat-screen.png",
+      imageFit: "cover",
       logo: "/images/tbchat-icon.webp",
       role: {
         en: "Front-End Developer",
@@ -298,6 +300,9 @@ export const PORTFOLIO_DATA: {
       category: "enterprise",
       categoryLabel: { en: "Cloud & Storage", vi: "Lưu Trữ Đám Mây" },
       featured: true,
+      image: "/images/tb-cloud-drive-screen.png",
+      imageFit: "cover",
+      logo: "/images/tbchat-icon.webp",
       role: {
         en: "Front-End Developer",
         vi: "Kỹ Sư Front-End",
@@ -375,6 +380,9 @@ export const PORTFOLIO_DATA: {
       category: "enterprise",
       categoryLabel: { en: "Enterprise SaaS", vi: "Quản Trị Doanh Nghiệp" },
       featured: true,
+      image: "/images/tb-admin-screen.png",
+      imageFit: "cover",
+      logo: "/images/tbchat-icon.webp",
       role: {
         en: "Front-End Developer",
         vi: "Kỹ Sư Front-End",
@@ -455,8 +463,9 @@ export const PORTFOLIO_DATA: {
       category: "mobile",
       categoryLabel: { en: "AI & Mobile", vi: "AI & Ứng Dụng Di Động" },
       featured: true,
-      image: "/images/mogu-screen.png",
-      logo: "/images/mogu-logo.png",
+      image: "/images/noan-mascot.png",
+      imageFit: "contain",
+      logo: "/images/noan-logo.png",
       apkDownload: "mogu-release.apk",
       role: {
         en: "Full-Stack & Mobile Lead",
@@ -537,6 +546,7 @@ export const PORTFOLIO_DATA: {
       categoryLabel: { en: "Media & Streaming", vi: "Media & Streaming" },
       featured: true,
       image: "/images/hyflim-logo.png",
+      imageFit: "contain",
       logo: "/images/hyflim-icon.png",
       apkDownload: "HyFlim.apk",
       role: {
@@ -612,6 +622,9 @@ export const PORTFOLIO_DATA: {
       category: "enterprise",
       categoryLabel: { en: "Ecosystem & Platform", vi: "Hệ Sinh Thái & Nền Tảng" },
       featured: false,
+      image: "/images/xepo-logo.png",
+      imageFit: "contain",
+      logo: "/images/xepo-logo.png",
       githubUrl: "https://github.com/golivedev-labs/xepo-fe",
       role: {
         en: "Front-End Developer",
@@ -687,6 +700,9 @@ export const PORTFOLIO_DATA: {
       category: "realtime_ai",
       categoryLabel: { en: "CV Builder & SaaS", vi: "Trình Tạo CV Trực Tuyến" },
       featured: false,
+      image: "/images/talio-logo.png",
+      imageFit: "contain",
+      logo: "/images/talio-logo.png",
       githubUrl: "https://github.com/golivedev-labs/talio-old",
       role: {
         en: "Front-End Developer",

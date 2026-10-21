@@ -119,7 +119,13 @@ export function ProjectDetailModal({ project, onClose }: { project: Project | nu
                 <div className="space-y-7">
                   {p.image && (
                     <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-line bg-surface-2">
-                      <Image src={p.image} alt={p.title} fill sizes="720px" className="object-cover" />
+                      <Image
+                        src={p.image}
+                        alt={p.title}
+                        fill
+                        sizes="720px"
+                        className={p.imageFit === "contain" ? "object-contain p-6" : "object-cover"}
+                      />
                     </div>
                   )}
                   <p className="text-base leading-relaxed text-fg-2">{p.description[lang]}</p>
