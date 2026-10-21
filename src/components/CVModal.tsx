@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Printer, X } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { usePortfolio } from "@/context/PortfolioContext";
@@ -50,11 +51,22 @@ export function CVModal() {
       <div className="overflow-y-auto overscroll-contain bg-neutral-200/10 p-3 sm:p-6" data-lenis-prevent>
         <article id="cv-print" className="mx-auto max-w-[760px] rounded-lg bg-white px-7 py-9 text-[13px] leading-relaxed text-neutral-800 sm:px-12 sm:py-12">
           <header className="flex flex-col gap-4 border-b border-neutral-300 pb-6 sm:flex-row sm:items-end sm:justify-between print-border">
-            <div>
-              <h2 id="cv-title" className="print-dark font-display text-[28px] font-semibold tracking-tight text-neutral-950">
-                {personal.name}
-              </h2>
-              <p className="mt-1 text-[14px] text-neutral-600 print-muted">{personal.title[lang]}</p>
+            <div className="flex items-center gap-3.5">
+              <div className="relative h-12 w-12 shrink-0">
+                <Image
+                  src="/images/logo-monogram.png"
+                  alt="Logo Monogram"
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 object-contain"
+                />
+              </div>
+              <div>
+                <h2 id="cv-title" className="print-dark font-display text-[26px] font-semibold tracking-tight text-neutral-950">
+                  {personal.name}
+                </h2>
+                <p className="mt-0.5 text-[14px] text-neutral-600 print-muted">{personal.title[lang]}</p>
+              </div>
             </div>
             <ul className="space-y-0.5 text-[12px] text-neutral-600 sm:text-right print-muted">
               <li>{personal.email}</li>

@@ -8,13 +8,14 @@ import { usePortfolio, THEMES, SHAPES, ThemeKey } from "@/context/PortfolioConte
 import { soundFx } from "@/lib/sound";
 import { scrollToTarget } from "@/lib/scroll";
 
-const SECTIONS = ["about", "skills", "experience", "projects", "contact"] as const;
+const SECTIONS = ["about", "skills", "experience", "projects", "cv", "contact"] as const;
 
 const LABELS: Record<(typeof SECTIONS)[number], { vi: string; en: string }> = {
   about: { vi: "Giới thiệu", en: "About" },
   skills: { vi: "Kỹ năng", en: "Skills" },
   experience: { vi: "Kinh nghiệm", en: "Experience" },
   projects: { vi: "Dự án", en: "Projects" },
+  cv: { vi: "Hồ sơ CV", en: "CV" },
   contact: { vi: "Liên hệ", en: "Contact" },
 };
 

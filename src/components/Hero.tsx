@@ -303,16 +303,14 @@ export function Hero() {
               {lang === "vi" ? "Xem dự án" : "See the work"}
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </a>
-            <button
-              onClick={() => {
-                soundFx.playClick();
-                setCVOpen(true);
-              }}
+            <a
+              href="#cv"
+              onClick={() => soundFx.playClick()}
               className="btn btn-ghost h-12 px-5"
             >
               <FileText className="h-4 w-4" />
               {lang === "vi" ? "Xem CV" : "View CV"}
-            </button>
+            </a>
           </motion.div>
 
           <motion.div {...rise(0.35)} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line pt-6">
