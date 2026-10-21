@@ -115,6 +115,8 @@ export const PORTFOLIO_DATA: {
     dob: string;
     phone: string;
     avatar: string;
+    logo: string;
+    monogram: string;
     email: string;
     github: string;
     facebook: string;
@@ -145,6 +147,8 @@ export const PORTFOLIO_DATA: {
     dob: "01/03/2001",
     phone: "0334881329",
     avatar: "/images/avatar.jpg",
+    logo: "/images/logo-mau-2.png",
+    monogram: "/images/logo-monogram.png",
     email: "hytruong.work@gmail.com",
     github: "https://github.com/TruongQuangHy",
     facebook: "https://www.facebook.com/quanghy123",

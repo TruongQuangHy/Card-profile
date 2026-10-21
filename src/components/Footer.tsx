@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { ArrowUp, Facebook, Github, Instagram, Mail } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { usePortfolio } from "@/context/PortfolioContext";
@@ -19,9 +20,19 @@ export default function Footer() {
   return (
     <footer className="relative z-10 border-t border-line">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 px-5 py-8 sm:flex-row sm:px-8">
-        <p className="text-sm text-muted">
-          © {new Date().getFullYear()} {personal.name}
-        </p>
+        <div className="flex flex-wrap items-center gap-3">
+          <Image
+            src={personal.logo}
+            alt="Trương Quang Hy • Dany"
+            width={170}
+            height={24}
+            className="h-6 w-auto object-contain opacity-85 transition-opacity duration-200 hover:opacity-100"
+          />
+          <span className="hidden sm:inline text-xs text-muted">|</span>
+          <p className="text-xs text-muted">
+            © {new Date().getFullYear()} {personal.name}
+          </p>
+        </div>
         <div className="flex items-center gap-1">
           {links.map((l) => (
             <a

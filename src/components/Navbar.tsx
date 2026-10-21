@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { FileText, Menu, X, SlidersHorizontal, Volume2, VolumeX, Shapes, TerminalSquare } from "lucide-react";
 import { usePortfolio, THEMES, SHAPES, ThemeKey } from "@/context/PortfolioContext";
@@ -157,16 +158,32 @@ export function Navbar() {
         >
           <a
             href="#home"
-            className="group flex items-center gap-3 rounded-lg"
+            className="group flex items-center gap-2.5 rounded-lg py-1 transition-opacity duration-200 hover:opacity-90"
             onClick={() => soundFx.playClick()}
-            aria-label="Trương Quang Hy"
+            aria-label="Trương Quang Hy • Dany"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-accent font-display text-[15px] font-bold text-accent-ink transition-transform duration-300 group-hover:-rotate-6">
-              QH
-            </span>
-            <span className="hidden sm:block font-display text-[15px] font-semibold tracking-tight text-fg">
-              Trương Quang Hy
-            </span>
+            {/* Desktop & Tablet: Full Mẫu 2 logo */}
+            <div className="relative hidden sm:block h-8 w-auto">
+              <Image
+                src="/images/logo-mau-2.png"
+                alt="Trương Quang Hy • Dany"
+                width={240}
+                height={32}
+                className="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                priority
+              />
+            </div>
+            {/* Mobile: Compact luxury Monogram mark */}
+            <div className="relative flex sm:hidden h-8 w-8 items-center justify-center">
+              <Image
+                src="/images/logo-monogram.png"
+                alt="Trương Quang Hy"
+                width={32}
+                height={32}
+                className="h-8 w-8 object-contain transition-transform duration-300 group-hover:scale-105"
+                priority
+              />
+            </div>
           </a>
 
           <ul className="hidden lg:flex items-center gap-1">

@@ -46,7 +46,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Trương Quang Hy", url: "https://github.com/TruongQuangHy" }],
   creator: "Trương Quang Hy",
   icons: {
-    icon: "/images/avatar.jpg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/images/logo-monogram.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/images/logo-monogram.png",
   },
   openGraph: {
     title: "Trương Quang Hy · Kỹ sư phần mềm Front-End & Full-Stack",
