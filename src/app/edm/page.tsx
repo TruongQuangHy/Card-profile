@@ -186,11 +186,11 @@ function EDMNav() {
       <nav className="mx-auto flex h-[68px] max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
         
         {/* Left: Logo & Back Link */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 shrink-0 whitespace-nowrap">
           <Link
             href="/"
             onClick={() => soundFx.playClick()}
-            className="group flex items-center gap-2.5 rounded-lg py-1 transition-opacity duration-200 hover:opacity-90"
+            className="group flex items-center gap-2.5 rounded-lg py-1 transition-opacity duration-200 hover:opacity-90 shrink-0"
             aria-label="Trương Quang Hy • Dany"
           >
             <div className="relative hidden sm:block h-8 w-auto">
@@ -215,28 +215,26 @@ function EDMNav() {
             </div>
           </Link>
 
-          <span className="hidden sm:inline h-4 w-px bg-line" aria-hidden="true" />
+          <span className="hidden sm:inline h-4 w-px bg-line shrink-0" aria-hidden="true" />
 
           <Link
             href="/#projects"
             onClick={() => soundFx.playClick()}
-            className="group inline-flex items-center gap-2 font-mono text-xs text-muted transition-colors hover:text-fg"
+            className="group inline-flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-fg whitespace-nowrap shrink-0"
           >
-            <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
-            <span className="hidden md:inline">{t("Về danh sách dự án", "Back to Projects")}</span>
+            <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1 shrink-0" />
+            <span className="hidden md:inline whitespace-nowrap">{t("Về danh sách dự án", "Back to Projects")}</span>
           </Link>
         </div>
 
-        {/* Center: Current Studio Indicator */}
-        <div className="hidden lg:flex items-center gap-2 rounded-full border border-line bg-surface-2 px-3.5 py-1 font-mono text-xs text-muted">
-          <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-          <span className="text-fg font-medium">EDM & Email Studio</span>
-          <span className="text-subtle">·</span>
-          <span>10 {t("Chiến dịch thực tế", "Campaigns")}</span>
+        {/* Center: Current Studio Indicator without Campaign Count */}
+        <div className="hidden lg:flex items-center gap-2 rounded-full border border-line bg-surface-2 px-3.5 py-1 font-mono text-xs text-muted whitespace-nowrap shrink-0">
+          <span className="h-2 w-2 rounded-full bg-accent animate-pulse shrink-0" />
+          <span className="text-fg font-medium whitespace-nowrap">EDM & Email Studio</span>
         </div>
 
         {/* Right: Controls matching Home Navbar */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 shrink-0 whitespace-nowrap">
           {/* Accent Color Switcher Pill */}
           <div className="hidden sm:flex items-center gap-1 rounded-lg border border-line bg-surface px-2 py-1">
             {(Object.keys(THEMES) as ThemeKey[]).map((key) => {
@@ -371,7 +369,7 @@ function EDMStudioMain() {
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line pb-2.5">
           <div className="flex items-center gap-2 font-display text-xs sm:text-sm font-semibold text-fg">
             <Layers className="h-3.5 w-3.5 text-accent" />
-            <span>{t("Chọn Chiến Dịch Email (10 Mẫu Thực Tế)", "Select Campaign Template (10 Available)")}</span>
+            <span className="whitespace-nowrap">{t("Chọn Chiến Dịch Email", "Select Campaign Template")}</span>
           </div>
 
           {/* Category Filter Pills */}
