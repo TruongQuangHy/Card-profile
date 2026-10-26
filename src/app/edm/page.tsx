@@ -367,15 +367,15 @@ function EDMStudioMain() {
       </section>
 
       {/* SECTION 2: TOP CAMPAIGN SELECTOR */}
-      <section className="panel p-5 sm:p-6 space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3.5">
-          <div className="flex items-center gap-2 font-display text-sm font-semibold text-fg">
-            <Layers className="h-4 w-4 text-accent" />
+      <section className="panel p-3 sm:p-3.5 space-y-2.5">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line pb-2.5">
+          <div className="flex items-center gap-2 font-display text-xs sm:text-sm font-semibold text-fg">
+            <Layers className="h-3.5 w-3.5 text-accent" />
             <span>{t("Chọn Chiến Dịch Email (10 Mẫu Thực Tế)", "Select Campaign Template (10 Available)")}</span>
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+          <div className="flex gap-1 overflow-x-auto pb-0.5 scrollbar-none">
             {[
               { id: "all", vi: "Tất cả (10)", en: "All (10)" },
               { id: "ecommerce", vi: "🛍️ E-Commerce (3)", en: "🛍️ E-Commerce (3)" },
@@ -391,7 +391,7 @@ function EDMStudioMain() {
                     soundFx.playHover();
                     setActiveCategory(c.id);
                   }}
-                  className={`chip relative transition-colors cursor-pointer ${
+                  className={`chip !text-[11px] !py-0.5 !px-2.5 relative transition-colors cursor-pointer ${
                     isCatActive
                       ? "!bg-accent !text-accent-ink font-semibold !border-accent"
                       : "hover:!border-line-strong hover:!text-fg"
@@ -404,8 +404,8 @@ function EDMStudioMain() {
           </div>
         </div>
 
-        {/* Grid of Template Cards with Motion */}
-        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-5">
+        {/* Compact Grid of Template Cards */}
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
           {filteredList.map((tpl) => {
             const isActive = tpl.id === currentId;
             return (
@@ -417,33 +417,30 @@ function EDMStudioMain() {
                   setCurrentId(tpl.id);
                 }}
                 onMouseEnter={() => soundFx.playHover()}
-                whileHover={reduced ? undefined : { y: -2 }}
+                whileHover={reduced ? undefined : { y: -1.5 }}
                 whileTap={reduced ? undefined : { scale: 0.98 }}
-                transition={{ duration: 0.2 }}
-                className={`group relative flex flex-col justify-between rounded-xl border p-3.5 text-left transition-colors duration-200 cursor-pointer ${
+                transition={{ duration: 0.18 }}
+                className={`group relative flex items-center gap-2.5 rounded-lg border px-3 py-2 text-left transition-all duration-150 cursor-pointer ${
                   isActive
-                    ? "border-accent bg-accent/15 shadow-[0_0_20px_rgba(var(--accent-rgb),0.15)] ring-1 ring-accent"
-                    : "border-line bg-surface-2/60 hover:border-line-strong hover:bg-surface-2"
+                    ? "border-accent bg-accent/15 ring-1 ring-accent shadow-sm"
+                    : "border-line bg-surface-2/50 hover:border-line-strong hover:bg-surface-2"
                 }`}
               >
-                <div>
-                  <div className="flex items-center justify-between text-lg mb-2">
-                    <span>{tpl.icon}</span>
-                    <span className="rounded bg-surface-3 px-1.5 py-0.5 font-mono text-[10px] text-muted font-medium">
-                      {tpl.tag[lang]}
-                    </span>
+                <span className="text-lg shrink-0 select-none">{tpl.icon}</span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-1">
+                    <h3 className={`font-display text-xs font-semibold truncate transition-colors ${
+                      isActive ? "text-accent" : "text-fg group-hover:text-accent"
+                    }`}>
+                      {tpl.title.split(" - ")[0]}
+                    </h3>
+                    {isActive && (
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                    )}
                   </div>
-                  <h3 className="font-display text-xs font-semibold text-fg line-clamp-1 group-hover:text-accent transition-colors">
-                    {tpl.title.split(" - ")[0]}
-                  </h3>
-                </div>
-                <div className="mt-2.5 flex items-center justify-between font-mono text-[10px] text-muted border-t border-line/60 pt-2">
-                  <span className="text-accent font-medium">{tpl.specs[0]}</span>
-                  <ChevronRight
-                    className={`h-3 w-3 transition-transform duration-200 ${
-                      isActive ? "text-accent translate-x-0.5" : "text-muted"
-                    }`}
-                  />
+                  <p className="font-mono text-[10px] text-muted truncate mt-0.5">
+                    {tpl.specs[0]}
+                  </p>
                 </div>
               </motion.button>
             );

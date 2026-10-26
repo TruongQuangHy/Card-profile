@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { lockScroll, unlockScroll } from "@/lib/scroll";
 
@@ -65,9 +66,9 @@ function DialogBody({ onClose, labelledBy, children, className, id, initialFocus
   }, [initialFocus]);
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-end sm:items-center justify-center sm:p-6">
+    <div className="fixed inset-0 z-[120] flex items-end sm:items-center justify-center sm:p-6">
       <motion.div
-        className="absolute inset-0 bg-[#05060a]/80"
+        className="absolute inset-0 bg-[#05060a]/85 backdrop-blur-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -96,5 +97,16 @@ function DialogBody({ onClose, labelledBy, children, className, id, initialFocus
 }
 
 export function Dialog({ open, ...rest }: DialogProps) {
-  return <AnimatePresence>{open && <DialogBody key="dialog" {...rest} />}</AnimatePresence>;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  return createPortal(
+    <AnimatePresence>{open && <DialogBody key="dialog" {...rest} />}</AnimatePresence>,
+    document.body
+  );
 }
