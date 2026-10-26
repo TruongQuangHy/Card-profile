@@ -5,7 +5,7 @@ export interface Project {
     en: string;
     vi: string;
   };
-  category: "all" | "enterprise" | "realtime_ai" | "mobile" | "streaming";
+  category: "all" | "enterprise" | "realtime_ai" | "mobile" | "streaming" | "email_edm";
   categoryLabel: {
     en: string;
     vi: string;
@@ -197,7 +197,7 @@ export const PORTFOLIO_DATA: {
       label: { en: "Engineering Experience", vi: "Năm Kinh Nghiệm Thực Chiến" },
     },
     {
-      value: "7+",
+      value: "8+",
       suffix: "Projects",
       label: { en: "Enterprise & Flagship Apps", vi: "Dự Án Sản Xuất Lớn" },
     },
@@ -213,6 +213,91 @@ export const PORTFOLIO_DATA: {
     },
   ],
   projects: [
+    {
+      id: "edm-email-architecture",
+      title: "Enterprise HTML Email & EDM Architecture Studio",
+      tagline: {
+        en: "Production-grade cross-client HTML Email & EDM architecture suite featuring 10+ campaigns tested across 40+ rendering engines (Outlook MSO/VML, Gmail, Apple Mail).",
+        vi: "Hệ thống thiết kế và kiến trúc 10+ chiến dịch HTML Email & EDM doanh nghiệp, tương thích 40+ email client (Outlook MSO/VML, Gmail, Apple Mail) với độ ổn định 99.8%.",
+      },
+      category: "email_edm",
+      categoryLabel: { en: "HTML Email & EDM", vi: "HTML Email & EDM" },
+      featured: true,
+      image: "/images/edm-studio-screen.png",
+      imageFit: "cover",
+      logo: "/images/edm-studio-icon.png",
+      liveUrl: "/edm",
+      role: {
+        en: "Lead Email Architect & Developer",
+        vi: "Kỹ Sư Kiến Trúc & Phát Triển EDM",
+      },
+      period: "10/2026 - Present",
+      clientOrOrg: "Independent / Enterprise Consulting",
+      teamSize: 1,
+      stats: [
+        { label: { en: "Campaign Templates", vi: "Mẫu Template Thực Tế" }, value: "10+ Ready" },
+        { label: { en: "Client Engines", vi: "Trình Kết Xuất Đã Test" }, value: "40+ Litmus" },
+        { label: { en: "Email Payload", vi: "Dung Lượng Tối Ưu" }, value: "< 100 KB" },
+      ],
+      description: {
+        en: "Comprehensive enterprise email engineering suite consisting of 10 battle-tested EDM campaigns spanning E-Commerce flash sales, transactional invoices, security verification magic links, B2B webinar invitations, and NPS surveys. Built with strict table nesting, bulletproof VML buttons for legacy Outlook, and dual dark mode styling.",
+        vi: "Bộ giải pháp kiến trúc email doanh nghiệp hoàn chỉnh bao gồm 10 chiến dịch EDM thực chiến trải dài từ Flash Sale thương mại điện tử, hóa đơn thanh toán, link bảo mật tài khoản, thư mời hội thảo B2B đến khảo sát NPS. Được xây dựng với cấu trúc bảng lồng nhau nghiêm ngặt, nút bấm VML chống vỡ trên Outlook và khả năng tương thích Dark Mode kép.",
+      },
+      challenges: {
+        en: [
+          "Overcoming legacy Word rendering engine quirks in Microsoft Outlook 2016-2024 (unwanted 1px white lines, broken margins, and unstyled buttons).",
+          "Preventing Gmail from automatically clipping emails exceeding the 102KB payload ceiling.",
+          "Preventing unintended dark mode color inversion in Apple Mail and Outlook Web without breaking brand palette fidelity.",
+          "Ensuring multi-column grids smoothly stack vertically on narrow mobile viewports without horizontal overflowing.",
+        ],
+        vi: [
+          "Khắc phục triệt để các lỗi cố hữu của trình render Word trên Microsoft Outlook 2016-2024 (vệt trắng 1px, vỡ lề padding và nút bấm mất style).",
+          "Kiểm soát dung lượng email nghiêm ngặt dưới 100KB nhằm ngăn chặn Gmail tự động cắt ngắn (clipping) nội dung.",
+          "Xử lý hiện tượng đảo ngược màu sắc không mong muốn của Dark Mode trên Apple Mail và Outlook Web mà vẫn giữ trọn màu nhận diện thương hiệu.",
+          "Đảm bảo các khối giao diện nhiều cột tự động xếp chồng (stacking) mượt mà về 1 cột trên điện thoại mà không tràn ngang.",
+        ],
+      },
+      solutions: {
+        en: [
+          "Constructed strict nested table hierarchies using role='presentation', zero cell-padding resets, and conditional MSO comments (<!--[if mso]>).",
+          "Implemented bulletproof buttons powered by Vector Markup Language (VML) shapes for pixel-perfect Outlook fidelity.",
+          "Engineered responsive fluid column stacking using align='left' fluid containers and CSS media queries.",
+          "Implemented dual Dark Mode support with color-scheme metadata and @media (prefers-color-scheme: dark) CSS overrides.",
+          "Embedded zero-width non-breaking joiner snippet buffers to cleanly control inbox preview text without leaking body content.",
+        ],
+        vi: [
+          "Xây dựng cấu trúc table lồng nhau nghiêm ngặt với role='presentation', reset cellpadding/cellspacing về 0 và bọc MSO conditionals cho Outlook.",
+          "Tích hợp nút bấm bulletproof ứng dụng hình khối Vector Markup Language (VML) bảo toàn 100% màu nền và bo góc trên Outlook.",
+          "Thiết lập cơ chế co giãn fluid stacking tự nhiên dựa trên bảng align='left' kết hợp media query cho mobile.",
+          "Hỗ trợ chuẩn Dark Mode kép với thẻ meta color-scheme kết hợp truy vấn @media (prefers-color-scheme: dark).",
+          "Chèn chuỗi ký tự đệm zero-width joiner kiểm soát chính xác dòng preheader hiển thị trong hộp thư đến.",
+        ],
+      },
+      techStack: [
+        "HTML5 Email Tables",
+        "Outlook MSO / VML",
+        "CSS3 Fluid Stacking",
+        "Dark Mode Schemes",
+        "Litmus Tested",
+        "CAN-SPAM / GDPR",
+        "Preheader Tuning",
+        "Retina Assets",
+      ],
+      architectureHighlights: {
+        en: [
+          "Strict nested table architecture with Outlook MSO conditionals",
+          "Bulletproof VML buttons retaining border radius in Outlook desktop",
+          "100% mobile fluid column collapse without layout jumps",
+          "Zero Gmail clipping with sub-100KB asset payloads",
+        ],
+        vi: [
+          "Kiến trúc table lồng nhau chuẩn mực với MSO conditionals dành cho Outlook",
+          "Nút bấm VML bảo toàn trọn vẹn màu sắc và bo góc trên Outlook Desktop",
+          "Cơ chế co giãn 1 cột trên mobile không gây giật giật layout",
+          "Payload dưới 100KB loại bỏ triệt để tình trạng bị Gmail cắt cụt",
+        ],
+      },
+    },
     {
       id: "tbchat-web",
       title: "TBChat Web (Official Chat Web)",

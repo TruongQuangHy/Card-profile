@@ -16,8 +16,8 @@ const GROUPS: Group[] = [
   {
     title: { vi: "Front-end", en: "Front-end" },
     primary: ["Vue 3", "Nuxt 3", "React 19", "Next.js", "TypeScript"],
-    also: ["Tailwind CSS v4", "Pinia", "Zustand", "TanStack Query", "TanStack Table", "Reka UI", "shadcn/ui", "Storybook", "Zod"],
-    proof: { vi: "TBChat Web, TB Cloud Drive, TB Admin, XEPO, TALIO", en: "TBChat Web, TB Cloud Drive, TB Admin, XEPO, TALIO" },
+    also: ["Tailwind CSS v4", "HTML Email / EDM (Outlook MSO/VML)", "Pinia", "Zustand", "TanStack Query", "TanStack Table", "Reka UI", "shadcn/ui", "Storybook", "Zod"],
+    proof: { vi: "TBChat Web, TB Cloud Drive, TB Admin, EDM Studio, XEPO, TALIO", en: "TBChat Web, TB Cloud Drive, TB Admin, EDM Studio, XEPO, TALIO" },
   },
   {
     title: { vi: "Kiến trúc & công cụ", en: "Architecture & tooling" },

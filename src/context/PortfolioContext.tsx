@@ -70,10 +70,27 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
   const [isTerminalOpen, setTerminalOpen] = useState(false);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Restore persisted preferences after hydration.
+  // Restore persisted preferences or auto-detect system language on first visit.
   useEffect(() => {
     const savedLang = localStorage.getItem("portfolio_lang");
-    if (savedLang === "vi" || savedLang === "en") setLangState(savedLang);
+    if (savedLang === "vi" || savedLang === "en") {
+      setLangState(savedLang);
+    } else {
+      // Auto-detect system / browser language
+      const sysLang = (
+        (typeof navigator !== "undefined" && navigator.languages && navigator.languages[0]) ||
+        (typeof navigator !== "undefined" && navigator.language) ||
+        ""
+      ).toLowerCase();
+      
+      if (sysLang.startsWith("vi")) {
+        setLangState("vi");
+      } else {
+        // Default to English if system/browser is English or any international locale
+        setLangState("en");
+      }
+    }
+
     const savedTheme = localStorage.getItem("portfolio_theme") as ThemeKey | null;
     if (savedTheme && savedTheme in THEMES) {
       setThemeState(savedTheme);

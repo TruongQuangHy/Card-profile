@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <title>Frontend Pulse #48 - Modern CSS Architecture & Micro-frontends</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+  <style>
+    /* Reset styles */
+    html, body {
+      overflow-x: hidden !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      height: 100% !important;
+      width: 100% !important;
+      background-color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    * {
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+    table, td {
+      mso-table-lspace: 0pt !important;
+      mso-table-rspace: 0pt !important;
+    }
+    table {
+      border-spacing: 0 !important;
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
+      margin: 0 auto !important;
+    }
+    img {
+      -ms-interpolation-mode: bicubic;
+      border: 0;
+      outline: none;
+      text-decoration: none;
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    @media only screen and (max-width: 620px) {
+      .email-container {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .mobile-p-15 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+      .mobile-stack {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .mobile-headline {
+        font-size: 22px !important;
+        line-height: 28px !important;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .dark-bg {
+        background-color: #0b0f19 !important;
+      }
+      .dark-card {
+        background-color: #111827 !important;
+        border-color: #1f2937 !important;
+      }
+      .dark-text {
+        color: #f9fafb !important;
+      }
+      .dark-muted {
+        color: #9ca3af !important;
+      }
+      .dark-subcard {
+        background-color: #1f2937 !important;
+      }
+    }
+  
+    /* Prevent horizontal scroll */
+    html, body {
+      overflow-x: hidden !important;
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 0px !important;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.3);
+      border-radius: 4px;
+    }
+
+  </style>
+</head>
+<body width="100%" style="margin: 0; padding: 0; mso-line-height-rule: exactly; background-color: #f1f5f9;">
+  <!-- Preheader -->
+  <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+    Issue #48: Deep dive into the next generation of CSS view transitions, subgrid adoption, and performance insights. &zwnj;&nbsp;&zwnj;&nbsp;
+  </div>
+
+  <center style="width: 100%; background-color: #f1f5f9;" class="dark-bg">
+    <!--[if mso | IE]>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
+    <tr>
+    <td>
+    <![endif]-->
+    <div style="max-width: 600px; margin: 0 auto; padding: 24px 10px 40px;" class="email-container">
+      
+      <!-- NEWSLETTER BRAND HEADER -->
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td style="padding: 10px 15px 20px;">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+                <td align="left">
+                  <span style="font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: #0284c7;">⚡ Frontend Pulse</span>
+                </td>
+                <td align="right" style="font-size: 12px; color: #64748b; font-weight: 600;" class="dark-muted">
+                  Issue #48 • 5 min read
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <!-- MAIN CONTAINER -->
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;" class="dark-card">
+        
+        <!-- FEATURED STORY COVER -->
+        <tr>
+          <td style="padding: 0;">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="Code on Screen" width="600" style="width: 100%; max-width: 600px; height: 240px; object-fit: cover;">
+          </td>
+        </tr>
+
+        <!-- FEATURED STORY CONTENT -->
+        <tr>
+          <td style="padding: 30px 30px 20px;" class="mobile-p-15">
+            <span style="display: inline-block; padding: 4px 10px; background-color: #e0f2fe; color: #0369a1; font-size: 11px; font-weight: 700; text-transform: uppercase; border-radius: 4px; letter-spacing: 0.5px; margin-bottom: 12px;">Deep Dive</span>
+            
+            <h1 style="margin: 0 0 14px; font-size: 24px; line-height: 32px; font-weight: 800; color: #0f172a;" class="mobile-headline dark-text">
+              <a href="#" style="color: inherit; text-decoration: none;">Why View Transitions Are Replacing Traditional SPA Routing</a>
+            </h1>
+            
+            <p style="margin: 0 0 16px; font-size: 15px; line-height: 24px; color: #475569;" class="dark-muted">
+              Native browser view transitions provide seamless state animations without the heavy JavaScript frameworks of yesterday. Here is how modern front-end teams are cutting bundle sizes by 40% while delivering 60fps animations out of the box.
+            </p>
+
+            <a href="#" style="color: #0284c7; font-size: 14px; font-weight: 700; text-decoration: underline;">Read Full Article (7 min) &rarr;</a>
+          </td>
+        </tr>
+
+        <!-- DIVIDER -->
+        <tr>
+          <td style="padding: 10px 30px;">
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 0;">
+          </td>
+        </tr>
+
+        <!-- CURATED SECTION TITLE -->
+        <tr>
+          <td style="padding: 20px 30px 10px;" class="mobile-p-15">
+            <h2 style="margin: 0; font-size: 17px; font-weight: 700; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px;" class="dark-text">🔥 Weekly Curated Picks</h2>
+          </td>
+        </tr>
+
+        <!-- ARTICLE 1 -->
+        <tr>
+          <td style="padding: 14px 30px;" class="mobile-p-15">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+                <td valign="top" style="padding-right: 15px;">
+                  <span style="font-size: 11px; font-weight: 700; color: #6366f1; text-transform: uppercase;">Performance</span>
+                  <h3 style="margin: 4px 0 6px; font-size: 16px; font-weight: 700; line-height: 22px;">
+                    <a href="#" style="color: #0f172a; text-decoration: none;" class="dark-text">Optimizing Interaction to Next Paint (INP) in Real-World Apps</a>
+                  </h3>
+                  <p style="margin: 0; font-size: 13px; line-height: 20px; color: #64748b;" class="dark-muted">
+                    A case study analyzing 25 enterprise dashboards and how micro-tasks blocked the main thread during user input.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ARTICLE 2 -->
+        <tr>
+          <td style="padding: 14px 30px 24px;" class="mobile-p-15">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+                <td valign="top" style="padding-right: 15px;">
+                  <span style="font-size: 11px; font-weight: 700; color: #059669; text-transform: uppercase;">Architecture</span>
+                  <h3 style="margin: 4px 0 6px; font-size: 16px; font-weight: 700; line-height: 22px;">
+                    <a href="#" style="color: #0f172a; text-decoration: none;" class="dark-text">Clean Code Architecture with Modern TypeScript 5.5+</a>
+                  </h3>
+                  <p style="margin: 0; font-size: 13px; line-height: 20px; color: #64748b;" class="dark-muted">
+                    Harnessing inferred type predicates, isolated declarations, and stricter domain boundary modeling.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SPONSOR CALLOUT BOX -->
+        <tr>
+          <td style="padding: 0 30px 24px;" class="mobile-p-15">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 18px;" class="dark-subcard">
+              <tr>
+                <td>
+                  <span style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Partner Feature</span>
+                  <h4 style="margin: 6px 0 8px; font-size: 15px; font-weight: 700; color: #0f172a;" class="dark-text">Speed up your CI/CD by 3x with TurboCloud</h4>
+                  <p style="margin: 0 0 10px; font-size: 13px; line-height: 19px; color: #475569;" class="dark-muted">Zero-config caching, remote artifact storage, and parallel test runners built for monorepos.</p>
+                  <a href="#" style="font-size: 13px; font-weight: 700; color: #0284c7; text-decoration: none;">Try TurboCloud Free for 30 Days &rarr;</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- FEEDBACK POLL -->
+        <tr>
+          <td style="padding: 24px 30px; background-color: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center;" class="mobile-p-15 dark-subcard">
+            <p style="margin: 0 0 12px; font-size: 13px; font-weight: 600; color: #475569;" class="dark-muted">How was this week's newsletter?</p>
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center">
+              <tr>
+                <td style="padding: 0 8px;">
+                  <a href="#" style="display: inline-block; padding: 8px 14px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 13px; color: #1e293b; font-weight: 600;">🔥 Loved it</a>
+                </td>
+                <td style="padding: 0 8px;">
+                  <a href="#" style="display: inline-block; padding: 8px 14px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 13px; color: #1e293b; font-weight: 600;">👌 Average</a>
+                </td>
+                <td style="padding: 0 8px;">
+                  <a href="#" style="display: inline-block; padding: 8px 14px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 13px; color: #1e293b; font-weight: 600;">👎 Not for me</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+
+      <!-- FOOTER -->
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td style="padding: 24px 10px; text-align: center; font-size: 12px; line-height: 18px; color: #64748b;" class="dark-muted">
+            <p style="margin: 0 0 8px;">You're receiving this because you subscribed to Frontend Pulse Weekly.</p>
+            <p style="margin: 0;">
+              <a href="#" style="color: #64748b; text-decoration: underline;">Update Email Preferences</a> • 
+              <a href="#" style="color: #64748b; text-decoration: underline;">Unsubscribe</a> • 
+              <a href="#" style="color: #64748b; text-decoration: underline;">Archive</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+  </center>
+</body>
+</html>

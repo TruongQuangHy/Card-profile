@@ -18,6 +18,7 @@ const FILTERS: { id: Filter; vi: string; en: string }[] = [
   { id: "realtime_ai", vi: "Thời gian thực", en: "Real-time" },
   { id: "mobile", vi: "Di động", en: "Mobile" },
   { id: "streaming", vi: "Streaming", en: "Streaming" },
+  { id: "email_edm", vi: "HTML Email & EDM", en: "HTML Email & EDM" },
 ];
 
 function ProjectCard({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
